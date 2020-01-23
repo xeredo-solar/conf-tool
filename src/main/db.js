@@ -18,6 +18,8 @@ module.exports = async (mainDb, name, def) => {
     set: (k, v) => {
       if (k) {
         dset(db, k, v)
+      } else if (v) {
+        db = v
       }
 
       return mainDb.set(name, db)
