@@ -19,6 +19,18 @@ const fs = require('fs')
 const path = require('path')
 const cp = require('child_process')
 
+const spawn = (cmd, args) => new Promise((resolve, reject) => {
+  const p = cp.spawn(cmd, args, { stdio: 'inherit' })
+
+  p.once('exit', (code, sig) => {
+    if (code || sig) {
+      return reject(new Error(`Failed with ${code || sig}`))
+    }
+
+    return resolve()
+  })
+})
+
 const U = {
   formatNix: require('./format-nix'),
   renderToFiles: async plugins => {
@@ -32,13 +44,11 @@ const U = {
 
     files['default.nix'] = nixTemplate(
       'For more information see https://os.mercode.org/docs/conf-tool/',
-      `
-{
+      `{
   imports = [
     ${Object.keys(files).map(file => `./${file}`).join('\n    ')}
   ];
-}
-`
+}`
     )
 
     return files
@@ -70,7 +80,10 @@ const U = {
     }
   },
   generateConfig: root => {
-    cp.execSync(`nixos-generate-config --root ${root}`)
+    return spawn('nixos-generate-config', ['--root', root])
+  },
+  applyConfig: upgrade => {
+    return spawn('nixos-rebuild', ['switch'].concat(upgrade ? ['--upgrade'] : []))
   }
 }
 

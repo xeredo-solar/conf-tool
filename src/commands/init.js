@@ -62,6 +62,11 @@ InitCommand.flags = {
     char: 'h',
     description: 'Do a hardware-scan with nixos-generate-config afterwards',
     default: true
+  }),
+  init: flags.boolean({
+    char: 'i',
+    description: 'Install the OS with nixos-install (requires -h, also todo)',
+    default: false
   })
 }
 
