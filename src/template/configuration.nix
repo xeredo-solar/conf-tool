@@ -12,6 +12,8 @@ with lib;
 {
   imports = [
     <meros/config> # managed by the merOS team, applies branding
+    ./hardware-configuration.nix # managed by nixOS, contains the configuration for your hardware
+    ./boot.nix # created by the installer, contains the boot configuration
     ./conf-tool # managed by conf-tool, contains your settings
     ./user.nix # managed by YOU alone :)
   ];

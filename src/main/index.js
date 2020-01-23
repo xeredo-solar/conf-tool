@@ -3,13 +3,17 @@
 const Keyv = require('keyv')
 const KeyvFile = require('keyv-file')
 
+const DB = require('./db')
+
+/* eslint-disable no-await-in-loop */
+
 const os = require('os')
 const path = require('path')
 const fs = require('fs')
 
 const mkdirp = require('mkdirp').sync
 
-module.exports = (
+module.exports = async (
   {
     confDir = '/etc/nixos'
   }
@@ -17,6 +21,8 @@ module.exports = (
   if (!fs.existsSync(confDir)) {
     mkdirp(confDir)
   }
+
+  const plugins = require('../plugins')
 
   const mainDb = new Keyv({
     store: new KeyvFile({
@@ -28,7 +34,10 @@ module.exports = (
     })
   })
 
-  return {
-    mainDb
+  for (let i = 0; i < plugins.length; i++) {
+    const plugin = plugins[i]
+    plugin.db = await DB(mainDb, plugin.id, plugin.default)
   }
+
+  return plugins
 }
