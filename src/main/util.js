@@ -19,9 +19,7 @@ const fs = require('fs')
 const path = require('path')
 
 const U = {
-  formatNix: () => { // TODO: add
-
-  },
+  formatNix: require('./format-nix'),
   renderToFiles: async plugins => {
     const files = {}
 

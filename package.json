@@ -16,7 +16,8 @@
     "eslint-config-aegir-standalone": "^20.4.1",
     "keyv": "^4.0.0",
     "keyv-file": "^0.1.13",
-    "mkdirp": "^0.5.1"
+    "mkdirp": "^0.5.1",
+    "rimraf": "^3.0.0"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",

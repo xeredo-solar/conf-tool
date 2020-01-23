@@ -1,6 +1,7 @@
 'use strict'
 
 module.exports = {
+  id: 'users',
   convertToKeys: users => {
     const base = {
       users: {

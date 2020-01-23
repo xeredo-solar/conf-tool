@@ -3,6 +3,7 @@
 const { flags } = require('@oclif/command')
 
 module.exports = {
+  id: 'keys',
   convertToKeys: keys => keys,
   default: {},
   cmds: {
