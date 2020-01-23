@@ -13,11 +13,7 @@ const fs = require('fs')
 
 const mkdirp = require('mkdirp').sync
 
-module.exports = async (
-  {
-    confDir = '/etc/nixos'
-  }
-) => {
+module.exports = async (confDir = '/etc/nixos') => {
   if (!fs.existsSync(confDir)) {
     mkdirp(confDir)
   }

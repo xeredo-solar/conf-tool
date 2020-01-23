@@ -17,6 +17,7 @@ const mkdirp = require('mkdirp').sync
 const rimraf = require('rimraf').sync
 const fs = require('fs')
 const path = require('path')
+const cp = require('child_process')
 
 const U = {
   formatNix: require('./format-nix'),
@@ -65,6 +66,9 @@ const U = {
     for (const name in files) { // eslint-disable-line guard-for-in
       fs.writeFileSync(path.join(outDir, name), files[name])
     }
+  },
+  generateConfig: root => {
+    cp.execSync(`nixos-generate-config --root ${root}`)
   }
 }
 
