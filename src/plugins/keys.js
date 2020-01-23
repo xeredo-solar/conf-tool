@@ -29,10 +29,9 @@ module.exports = {
         // args --json
         const [k, v] = args
         if (flags.json) {
-          db.set(k, JSON.parse(v))
-        } else {
-          db.set(k, v)
+          return db.set(k, JSON.parse(v))
         }
+        return db.set(k, v)
       }
     },
     'del-key': {
@@ -44,7 +43,7 @@ module.exports = {
         }
       ],
       run: (flags, args, db) => {
-        db.del(args[0])
+        return db.del(args[0])
       }
     },
     'get-key': {
