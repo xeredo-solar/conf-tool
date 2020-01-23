@@ -13,12 +13,12 @@ const fs = require('fs')
 
 const mkdirp = require('mkdirp').sync
 
-module.exports = async (confDir = '/etc/nixos') => {
+module.exports = async (confDir = '/etc/nixos', _plugins) => {
   if (!fs.existsSync(confDir)) {
     mkdirp(confDir)
   }
 
-  const plugins = require('../plugins')
+  const plugins = _plugins || require('../plugins')
 
   const mainDb = new Keyv({
     store: new KeyvFile({
