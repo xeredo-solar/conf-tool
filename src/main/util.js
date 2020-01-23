@@ -27,7 +27,7 @@ const U = {
     for (let i = 0; i < plugins.length; i++) {
       const plugin = plugins[i]
 
-      files[`${plugin.id}`] = await U.render(plugin)
+      files[`${plugin.id}.nix`] = await U.render(plugin)
     }
 
     files['default.nix'] = nixTemplate(
@@ -35,11 +35,13 @@ const U = {
       `
 {
   imports = [
-    ${Object.keys(files).map(file => `./${file}`).join('\n  ')}
+    ${Object.keys(files).map(file => `./${file}`).join('\n    ')}
   ];
 }
 `
     )
+
+    return files
   },
   render: async plugin => {
     const data = await plugin.db.get()

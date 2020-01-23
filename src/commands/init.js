@@ -35,6 +35,8 @@ class InitCommand extends Command {
       await util.generateConfig(flags.root)
     }
 
+    this.log('Writing config...')
+
     const files = await util.renderToFiles(plugins)
     await util.batchWriteFiles(outDir, files)
   }

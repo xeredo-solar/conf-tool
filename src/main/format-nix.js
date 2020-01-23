@@ -25,7 +25,7 @@ const format = {
     const out = ['{']
 
     for (const key in data) { // eslint-disable-line guard-for-in
-      out.push(`${key} = ${fmt(data)};`)
+      out.push(`${key} = ${fmt(data[key])};`)
     }
 
     if (out.length === 1) return '{ }'
