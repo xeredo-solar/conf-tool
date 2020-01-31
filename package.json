@@ -32,17 +32,28 @@
   "engines": {
     "node": ">=8.0.0"
   },
-  "files": ["/bin", "/npm-shrinkwrap.json", "/oclif.manifest.json", "/src"],
+  "files": [
+    "/bin",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json",
+    "/src"
+  ],
   "homepage": "https://github.com/mercode-org/conf-tool",
-  "keywords": ["oclif"],
+  "keywords": [
+    "oclif"
+  ],
   "license": "MPL-2.0",
   "main": "src/index.js",
   "oclif": {
     "commands": "./src/commands",
     "bin": "conf",
-    "plugins": ["@oclif/plugin-help"],
+    "plugins": [
+      "@oclif/plugin-help"
+    ],
     "hooks": {
-      "init": ["./src/hooks/init/plugincmds"]
+      "init": [
+        "./src/hooks/init/plugincmds"
+      ]
     }
   },
   "repository": "mercode-org/conf-tool",
