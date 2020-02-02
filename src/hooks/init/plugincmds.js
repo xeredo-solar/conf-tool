@@ -1,8 +1,7 @@
 'use strict'
 
-const { Command } = require('@oclif/command')
+const { Command, flags } = require('@oclif/command')
 const Config = require('@oclif/config')
-const ux = require('cli-ux')
 
 /* eslint-disable no-loop-func */
 
@@ -10,7 +9,7 @@ const path = require('path')
 const Main = require('../../main')
 const util = require('../../main/util')
 
-module.exports = async function () {
+module.exports = function () {
   const _plugins = require('../../plugins')
 
   const commands = []
@@ -23,7 +22,7 @@ module.exports = async function () {
       class GeneratedCommand extends Command {
         async run () {
           const { flags, args } = this.parse(GeneratedCommand)
-          const confDir = '/etc/nixos'
+          const confDir = path.join(flags.root, 'etc/nixos')
           const outDir = path.join(confDir, 'conf-tool')
 
           // this.log(`Loading ${confDir}...`)
@@ -46,6 +45,18 @@ module.exports = async function () {
 
       Object.keys(cmd).filter(k => k !== 'run').forEach(k => {
         GeneratedCommand[k] = cmd[k]
+      })
+
+      if (!GeneratedCommand.flags) {
+        GeneratedCommand.flags = {}
+      }
+
+      GeneratedCommand.flags.root = flags.boolean({
+        root: flags.string({
+          char: 'r',
+          description: 'Filesystem-root to use',
+          default: '/'
+        })
       })
 
       /* UpdateCommand.flags = {
