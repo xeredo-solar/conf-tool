@@ -14,7 +14,7 @@ const fmt = data => {
 }
 
 function nixEscape (str) {
-  return str.replace(/''/gmi, "\\''").replace(/\$\{/gmi, "''${")
+  return '"' + str.replace(/''/gmi, "\\''").replace(/\$\{/gmi, "''${") + '"'
 }
 
 const format = {
