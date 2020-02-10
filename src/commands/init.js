@@ -6,6 +6,11 @@ const path = require('path')
 const Main = require('../main')
 const util = require('../main/util')
 const fs = require('fs')
+const stream = require('stream')
+const _util = require('util')
+const mkdirp = require('mkdirp').sync
+
+const finished = _util.promisify(stream.finished)
 
 class InitCommand extends Command {
   async run () {
@@ -14,6 +19,17 @@ class InitCommand extends Command {
     const outDir = path.join(confDir, 'conf-tool')
 
     this.log(`Loading ${confDir}...`)
+
+    if (flags.seed) {
+      const conf = path.join(confDir, 'conf-tool', 'conf-tool.json')
+      mkdirp(outDir)
+
+      const stream = fs.createReadStream(flags.seed)
+        .pipe(fs.createWriteStream(conf))
+      this.log(`Creating seeded config ${conf}...`)
+
+      await finished(stream)
+    }
 
     const plugins = await Main(confDir)
 
@@ -67,6 +83,11 @@ InitCommand.flags = {
     char: 'i',
     description: 'Install the OS with nixos-install (requires -h, also todo)',
     default: false
+  }),
+  seed: flags.string({
+    char: 's',
+    description: 'Seed config to copy',
+    default: null
   })
 }
 

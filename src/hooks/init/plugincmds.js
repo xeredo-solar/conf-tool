@@ -51,13 +51,12 @@ module.exports = function () {
         GeneratedCommand.flags = {}
       }
 
-      GeneratedCommand.flags.root = flags.boolean({
-        root: flags.string({
+      GeneratedCommand.flags.root =
+        flags.string({
           char: 'r',
           description: 'Filesystem-root to use',
           default: '/'
         })
-      })
 
       /* UpdateCommand.flags = {
         hwScan: flags.boolean({
