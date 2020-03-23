@@ -23,15 +23,17 @@ module.exports = {
       flags: {
         json: flags.boolean({
           char: 'j',
-          default: true
+          default: false
         })
       },
       run: (flags, args, db) => {
         // args --json
-        const [k, v] = args
+
+        const { key: k, value: v } = args
         if (flags.json) {
           return db.set(k, JSON.parse(v))
         }
+
         return db.set(k, v)
       }
     },
@@ -44,7 +46,7 @@ module.exports = {
         }
       ],
       run: (flags, args, db) => {
-        return db.del(args[0])
+        return db.del(args.key)
       }
     },
     'get-key': {
@@ -56,7 +58,7 @@ module.exports = {
         }
       ],
       run: (flags, args, db) => {
-        console.log(require('util').inspect(db.get(args[0]), { colors: true, depth: null })) // eslint-disable-line no-console
+        console.log(require('util').inspect(db.get(args.key), { colors: true, depth: null })) // eslint-disable-line no-console
       }
     }
   }

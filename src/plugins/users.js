@@ -33,7 +33,8 @@ module.exports = {
         const v = await db.get()
 
         if (v.indexOf(username) !== -1) {
-          throw new Error('User already exists')
+          console.error('User already exists, ignoring...') // eslint-disable-line no-console
+          return
         }
 
         v.push(username)
@@ -53,7 +54,8 @@ module.exports = {
         let v = await db.get()
 
         if (v.indexOf(username) === -1) {
-          throw new Error('User does not exist')
+          console.error('User does not exist, ignoring...') // eslint-disable-line no-console
+          return
         }
 
         v = v.filter(name => name !== username)
