@@ -17,7 +17,7 @@ $ npm install -g conf-tool
 $ conf COMMAND
 running command...
 $ conf (-v|--version|version)
-conf-tool/0.0.2 linux-x64 node-v12.16.1
+conf-tool/0.1.0 linux-x64 node-v12.16.1
 $ conf --help [COMMAND]
 USAGE
   $ conf COMMAND
@@ -67,7 +67,7 @@ DESCRIPTION
   test
 ```
 
-_See code: [src/commands/init.js](https://github.com/mercode-org/conf-tool/blob/v0.0.2/src/commands/init.js)_
+_See code: [src/commands/init.js](https://github.com/mercode-org/conf-tool/blob/v0.1.0/src/commands/init.js)_
 
 ## `conf update`
 
@@ -87,7 +87,7 @@ DESCRIPTION
   test
 ```
 
-_See code: [src/commands/update.js](https://github.com/mercode-org/conf-tool/blob/v0.0.2/src/commands/update.js)_
+_See code: [src/commands/update.js](https://github.com/mercode-org/conf-tool/blob/v0.1.0/src/commands/update.js)_
 <!-- commandsstop -->
 
 # Example content of /etc/nixos/conf-tool.json

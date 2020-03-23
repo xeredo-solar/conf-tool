@@ -1,7 +1,7 @@
 {
   "name": "conf-tool",
   "description": "Tool to manage the nixOS config",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "author": "Maciej Krüger @mkg20001",
   "bin": {
     "conf": "./bin/run"
