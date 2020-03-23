@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports = {
-  id: 'unfree',
+  id: 'softwareAllowUnfree',
   convertToKeys: allowUnfree => {
     return { nixpkgs: { config: { allowUnfree } } }
   },
