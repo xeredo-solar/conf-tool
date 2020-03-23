@@ -5,8 +5,10 @@ Tool to manage the nixOS config
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 
 <!-- toc -->
+* [conf-tool](#conf-tool)
 * [Usage](#usage)
 * [Commands](#commands)
+* [Example content of /etc/nixos/conf-tool.json](#example-content-of-etcnixosconf-tooljson)
 <!-- tocstop -->
 # Usage
 <!-- usage -->
@@ -15,7 +17,7 @@ $ npm install -g conf-tool
 $ conf COMMAND
 running command...
 $ conf (-v|--version|version)
-conf-tool/0.0.1 linux-x64 node-v10.18.1
+conf-tool/0.0.1 linux-x64 node-v12.16.1
 $ conf --help [COMMAND]
 USAGE
   $ conf COMMAND
@@ -24,26 +26,9 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`conf hello`](#conf-hello)
 * [`conf help [COMMAND]`](#conf-help-command)
-
-## `conf hello`
-
-Describe the command here
-
-```
-USAGE
-  $ conf hello
-
-OPTIONS
-  -n, --name=name  name to print
-
-DESCRIPTION
-  ...
-  Extra documentation goes here
-```
-
-_See code: [src/commands/hello.js](https://github.com/mercode-org/conf-tool/blob/v0.0.1/src/commands/hello.js)_
+* [`conf init`](#conf-init)
+* [`conf update`](#conf-update)
 
 ## `conf help [COMMAND]`
 
@@ -61,6 +46,48 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3/src/commands/help.ts)_
+
+## `conf init`
+
+Initializes a new conf-tool configuration
+
+```
+USAGE
+  $ conf init
+
+OPTIONS
+  -h, --hwScan             Do a hardware-scan with nixos-generate-config afterwards
+  -i, --init               Install the OS with nixos-install (requires -h, also todo)
+  -r, --root=root          [default: /] Filesystem-root to use
+  -s, --seed=seed          Seed config to copy
+  -t, --template=template  [default: meros] Template to copy (meros, nixos)
+
+DESCRIPTION
+  ...
+  test
+```
+
+_See code: [src/commands/init.js](https://github.com/mercode-org/conf-tool/blob/v0.0.1/src/commands/init.js)_
+
+## `conf update`
+
+Updates as conf-tool configuration
+
+```
+USAGE
+  $ conf update
+
+OPTIONS
+  -a, --apply    Apply config with nixos-rebuild switch
+  -h, --hwScan   Do a hardware-scan with nixos-generate-config afterwards
+  -u, --upgrade  nixos-rebuild switch --upgrade flag
+
+DESCRIPTION
+  ...
+  test
+```
+
+_See code: [src/commands/update.js](https://github.com/mercode-org/conf-tool/blob/v0.0.1/src/commands/update.js)_
 <!-- commandsstop -->
 
 # Example content of /etc/nixos/conf-tool.json
