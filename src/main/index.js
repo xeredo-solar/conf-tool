@@ -7,7 +7,7 @@ const DB = require('./db')
 
 /* eslint-disable no-await-in-loop */
 
-const os = require('os')
+// const os = require('os')
 const path = require('path')
 const fs = require('fs')
 
