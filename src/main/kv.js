@@ -11,6 +11,8 @@ const tryLoad = file => {
   const bFile = b(file)
   let failedToLoad = false
 
+  log('load %s', file)
+
   if (fs.existsSync(file)) {
     try {
       return JSON.parse(fs.readFileSync(file))
@@ -43,9 +45,13 @@ const tryLoad = file => {
 const trySave = (file, data) => {
   const bFile = b(file)
 
+  log('save %s', file)
+
   try {
     fs.writeFileSync(bFile, JSON.stringify(data))
-    fs.unlinkSync(file)
+    if (fs.existsSync(file)) {
+      fs.unlinkSync(file)
+    }
     fs.renameSync(bFile, file)
   } catch (error) {
     console.error('DB failed to save: %s', error) // eslint-disable-line no-console

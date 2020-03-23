@@ -29,14 +29,14 @@ module.exports = {
           description: 'Username to add' // help description
         }
       ],
-      run: async (flags, args, db) => {
+      run: async (flags, { username }, db) => {
         const v = await db.get()
 
-        if (v.indexOf(args[0]) !== -1) {
+        if (v.indexOf(username) !== -1) {
           throw new Error('User already exists')
         }
 
-        v.push(args[0])
+        v.push(username)
 
         await db.set()
       }
@@ -49,21 +49,23 @@ module.exports = {
           description: 'Username to remove' // help description
         }
       ],
-      run: async (flags, args, db) => {
+      run: async (flags, { username }, db) => {
         let v = await db.get()
 
-        if (v.indexOf(args[0]) === -1) {
+        if (v.indexOf(username) === -1) {
           throw new Error('User does not exist')
         }
 
-        v = v.filter(name => name !== args[0])
+        v = v.filter(name => name !== username)
 
         await db.set(null, v)
       }
     },
     'list-users': {
       run: async (flags, args, db) => {
-        console.log(require('util').inspect(await db.get(), { colors: true, depth: null })) // eslint-disable-line no-console
+        const users = await db.get()
+        const out = users.length ? users.join('\n') : '<no users>'
+        console.log(out) // eslint-disable-line no-console
       }
     }
   }

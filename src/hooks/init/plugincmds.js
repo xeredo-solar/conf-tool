@@ -30,6 +30,7 @@ module.exports = function () {
           const plugins = await Main(confDir, _plugins)
 
           // this.log('Running command...')
+
           await cmd.run(flags, args, pl.db)
 
           // this.log('Writing config...')
@@ -92,16 +93,6 @@ module.exports = function () {
     }
 
     get commands () {
-      /* var _a
-      const cmd = (_a = class extends Command {
-        static load () { return cmd }
-        async run () {
-          ux.log('running mydynamiccommand')
-        }
-      },
-      _a.id = 'mydynamiccommand',
-      _a)
-      return [cmd] */
       return commands
     }
   }

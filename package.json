@@ -15,8 +15,6 @@
     "dlv": "^1.1.3",
     "dset": "^2.0.1",
     "eslint-config-aegir-standalone": "^21.3.0",
-    "keyv": "^4.0.0",
-    "keyv-file": "^0.1.13",
     "mkdirp": "^1.0.3",
     "rimraf": "^3.0.2"
   },
