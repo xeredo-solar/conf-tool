@@ -20,6 +20,7 @@ module.exports = {
           description: 'Value to be set (use --json to set a JSON value)' // help description
         }
       ],
+      description: 'Set a key',
       flags: {
         json: flags.boolean({
           char: 'j',
@@ -45,6 +46,7 @@ module.exports = {
           description: 'Key whoose value to recursivly delete (be careful!)' // help description
         }
       ],
+      description: 'Delete a key',
       run: (flags, args, db) => {
         return db.del(args.key)
       }
@@ -57,6 +59,7 @@ module.exports = {
           description: 'Key whoose value to display' // help description
         }
       ],
+      description: 'Get the value of a key',
       run: (flags, args, db) => {
         console.log(require('util').inspect(db.get(args.key), { colors: true, depth: null })) // eslint-disable-line no-console
       }

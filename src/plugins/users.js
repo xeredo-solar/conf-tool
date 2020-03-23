@@ -29,6 +29,7 @@ module.exports = {
           description: 'Username to add' // help description
         }
       ],
+      description: 'Add a user',
       run: async (flags, { username }, db) => {
         const v = await db.get()
 
@@ -50,6 +51,7 @@ module.exports = {
           description: 'Username to remove' // help description
         }
       ],
+      description: 'Delete a user',
       run: async (flags, { username }, db) => {
         let v = await db.get()
 
@@ -64,6 +66,7 @@ module.exports = {
       }
     },
     'list-users': {
+      description: 'List all users',
       run: async (flags, args, db) => {
         const users = await db.get()
         const out = users.length ? users.join('\n') : '<no users>'
