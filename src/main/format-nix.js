@@ -2,6 +2,7 @@
 
 const fmt = data => {
   switch (true) {
+    case data && data._literal: return data._value
     case Array.isArray(data): return format.array(data)
     case typeof data === 'object': return format.object(data)
     case typeof data === 'boolean': return format.boolean(data)

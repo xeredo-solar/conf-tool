@@ -25,14 +25,23 @@ module.exports = {
         json: flags.boolean({
           char: 'j',
           default: false
+        }),
+        literal: flags.boolean({
+          char: 'j',
+          default: false
         })
       },
       run: (flags, args, db) => {
         // args --json
 
         const { key: k, value: v } = args
+
         if (flags.json) {
           return db.set(k, JSON.parse(v))
+        }
+
+        if (flags.literal) {
+          return db.set(k, { _literal: true, _value: v })
         }
 
         return db.set(k, v)
