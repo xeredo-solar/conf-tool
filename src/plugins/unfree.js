@@ -5,7 +5,7 @@ module.exports = {
   convertToKeys: allowUnfree => {
     return { nixpkgs: { config: { allowUnfree } } }
   },
-  default: [],
+  default: false,
   cmds: {
     'allow-unfree': {
       description: 'Allow installing unfree software',
