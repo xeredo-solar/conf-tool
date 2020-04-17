@@ -35,6 +35,11 @@ module.exports = function () {
 
           // this.log('Writing config...')
 
+          if (flags.hwScan) {
+            // this.log('Running hw-scan...')
+            await util.generateConfig(flags.root)
+          }
+
           const files = await util.renderToFiles(plugins)
           await util.batchWriteFiles(outDir, files)
         }
@@ -59,23 +64,26 @@ module.exports = function () {
           default: '/'
         })
 
-      /* UpdateCommand.flags = {
-        hwScan: flags.boolean({
+      GeneratedCommand.flags.hwScan =
+        flags.boolean({
           char: 'h',
           description: 'Do a hardware-scan with nixos-generate-config afterwards',
-          default: true
-        }),
-        apply: flags.boolean({
+          default: false
+        })
+
+      GeneratedCommand.flags.apply =
+        flags.boolean({
           char: 'a',
           description: 'Apply config with nixos-rebuild switch',
           default: false
-        }),
-        upgrade: flags.boolean({
+        })
+
+      GeneratedCommand.flags.upgrade =
+        flags.boolean({
           char: 'u',
           description: 'nixos-rebuild switch --upgrade flag',
           default: false
         })
-      } */
 
       commands.push(GeneratedCommand)
       commandIDs.push(cmdId)
