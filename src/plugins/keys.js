@@ -2,6 +2,29 @@
 
 const { flags } = require('@oclif/command')
 
+const str2primitive = [
+  {
+    match: v => v === 'true',
+    parse: v => true
+  },
+  {
+    match: v => v === 'false',
+    parse: v => false
+  },
+  {
+    match: v => v === 'null',
+    parse: v => null
+  },
+  {
+    match: v => v.match(/^\d+(([.,]\d)+)$/mi),
+    parse: v => parseFloat(v, 10)
+  },
+  {
+    match: v => v.startsWith('pkgs.') || v.startsWith('let '),
+    parse: v => ({ _literal: true, _value: v })
+  }
+]
+
 module.exports = {
   id: 'keys',
   convertToKeys: keys => keys,
@@ -27,14 +50,12 @@ module.exports = {
           default: false
         }),
         literal: flags.boolean({
-          char: 'j',
+          char: 'l',
           default: false
         })
       },
       run: (flags, args, db) => {
-        // args --json
-
-        const { key: k, value: v } = args
+        let { key: k, value: v } = args
 
         if (flags.json) {
           return db.set(k, JSON.parse(v))
@@ -42,6 +63,15 @@ module.exports = {
 
         if (flags.literal) {
           return db.set(k, { _literal: true, _value: v })
+        }
+
+        for (let i = 0; i < str2primitive.length; i++) {
+          const prim = str2primitive[i]
+
+          if (prim.match(v)) {
+            v = prim.parse(v)
+            break
+          }
         }
 
         return db.set(k, v)
@@ -57,6 +87,7 @@ module.exports = {
       ],
       description: 'Delete a key',
       run: (flags, args, db) => {
+        // TODO: cleanup branches with no leaves
         return db.del(args.key)
       }
     },
