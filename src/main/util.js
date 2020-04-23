@@ -18,16 +18,21 @@ const rimraf = require('rimraf').sync
 const fs = require('fs')
 const path = require('path')
 const cp = require('child_process')
+const bl = require('bl')
 
-const spawn = (cmd, args) => new Promise((resolve, reject) => {
-  const p = cp.spawn(cmd, args, { stdio: 'inherit' })
+const spawn = (cmd, args, catchStdio) => new Promise((resolve, reject) => {
+  const p = cp.spawn(cmd, args, { stdio: catchStdio ? 'pipe' : 'inherit' })
+  if (catchStdio) {
+    p.stdout = p.stdout.pipe(bl())
+    p.stderr = p.stderr.pipe(bl())
+  }
 
   p.once('exit', (code, sig) => {
     if (code || sig) {
       return reject(new Error(`Failed with ${code || sig}`))
     }
 
-    return resolve()
+    return resolve({ stdout: String(p.stdout), stderr: String(p.stderr) })
   })
 })
 
@@ -84,6 +89,12 @@ const U = {
   },
   applyConfig: upgrade => {
     return spawn('nixos-rebuild', ['switch'].concat(upgrade ? ['--upgrade'] : []))
+  },
+  checkIfPackageExists: async attr => {
+    const [channel, ...channelAttr] = attr.split('.')
+
+    const res = await spawn('nix', ['eval', `(let ch = (import <${channel}> {}); in ch ? ${channelAttr.map(JSON.stringify).join('.')})`], true)
+    return JSON.parse(res.stdout.trim() || 'false')
   }
 }
 
