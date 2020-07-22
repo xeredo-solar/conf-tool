@@ -71,8 +71,8 @@ InitCommand.flags = {
   }),
   template: flags.string({
     char: 't',
-    description: 'Template to copy (meros, nixos)',
-    default: 'meros'
+    description: 'Template to copy (solaros, nixos)',
+    default: 'solaros'
   }),
   hwScan: flags.boolean({
     char: 'h',

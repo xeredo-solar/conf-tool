@@ -48,7 +48,7 @@ const U = {
     }
 
     files['default.nix'] = nixTemplate(
-      'For more information see https://os.mercode.org/docs/conf-tool/',
+      'For more information see https://os.ssd-solar.dev/docs/conf-tool/',
       `{
   imports = [
     ${Object.keys(files).map(file => `./${file}`).join('\n    ')}
@@ -66,7 +66,7 @@ const U = {
       const nix = U.formatNix(keys)
 
       return nixTemplate(
-        `For more information see https://os.mercode.org/docs/conf-tool/plugins/${plugin.id}`,
+        `For more information see https://os.ssd-solar.dev/docs/conf-tool/plugins/${plugin.id}`,
         nix
       )
     }
