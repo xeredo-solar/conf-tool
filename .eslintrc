@@ -1,3 +1,19 @@
 {
-  "extends": [ "oclif", "aegir-standalone" ]
+  "extends": [
+    "oclif",
+    "ipfs"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "test/**/*.js"
+      ],
+      "env": {
+        "mocha": true
+      }
+    }
+  ],
+  "rules": {
+    "no-await-in-loop": "off"
+  }
 }

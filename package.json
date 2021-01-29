@@ -3,10 +3,15 @@
   "description": "Tool to manage the nixOS config",
   "version": "0.1.0",
   "author": "Maciej Krüger @mkg20001",
+  "template": {
+    "extends": [
+      "nodeEslint"
+    ]
+  },
   "bin": {
     "conf": "./bin/run"
   },
-  "bugs": "https://github.com/mercode-org/conf-tool/issues",
+  "bugs": "https://github.com/ssd-solar/conf-tool/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -17,17 +22,19 @@
     "dset": "^3.0.0",
     "eslint-config-aegir-standalone": "^21.3.0",
     "mkdirp": "^1.0.4",
+    "mkgs-tool": "^0.1.14",
     "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
     "chai": "^4",
-    "eslint": "^7.18",
-    "eslint-config-oclif": "^3.1",
+    "eslint": "*",
+    "eslint-config-ipfs": "*",
+    "eslint-config-oclif": "*",
     "globby": "^11",
-    "mocha": "^8",
-    "nyc": "^15"
+    "mocha": "*",
+    "nyc": "*"
   },
   "engines": {
     "node": ">=12.0.0"
@@ -38,7 +45,7 @@
     "/oclif.manifest.json",
     "/src"
   ],
-  "homepage": "https://github.com/mercode-org/conf-tool",
+  "homepage": "https://github.com/ssd-solar/conf-tool",
   "keywords": [
     "oclif"
   ],
@@ -56,12 +63,15 @@
       ]
     }
   },
-  "repository": "mercode-org/conf-tool",
+  "repository": "ssd-solar/conf-tool",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint .",
     "prepack": "oclif-dev manifest && oclif-dev readme",
-    "test": "nyc mocha --forbid-only \"test/**/*.test.js\"",
-    "version": "oclif-dev readme && git add README.md"
+    "test": "mocha -A",
+    "version": "oclif-dev readme && git add README.md",
+    "cov": "nyc mocha",
+    "lint": "eslint .",
+    "fix": "eslint --fix ."
   }
 }

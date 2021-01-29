@@ -1,3 +1,6 @@
+
+# custom
+
 *-debug.log
 *-error.log
 /.nyc_output
@@ -6,3 +9,9 @@
 /tmp
 node_modules
 yarn.lock
+result*
+
+# node
+
+yarn-error.log
+package-lock.json
