@@ -1,7 +1,7 @@
 {
   "extends": [
     "oclif",
-    "ipfs"
+    "ipfs/js"
   ],
   "overrides": [
     {

@@ -1,0 +1,95 @@
+{
+  "nodes": {
+    "nix-node-package": {
+      "locked": {
+        "lastModified": 1631348881,
+        "narHash": "sha256-bG/wwzf14M1aCNVaL/KD1F+3uiY734d6G23g4eLWBI8=",
+        "owner": "mkg20001",
+        "repo": "nix-node-package",
+        "rev": "7e149259a3ff32b68dff3ddcb697a906b03e2bca",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mkg20001",
+        "ref": "master",
+        "repo": "nix-node-package",
+        "type": "github"
+      }
+    },
+    "nixos-hardware": {
+      "locked": {
+        "lastModified": 1635449388,
+        "narHash": "sha256-i7hMiAgpRTGsMPTQKuNCDfW/ftQ+g9N6iaMj+RN6yws=",
+        "owner": "nixos",
+        "repo": "nixos-hardware",
+        "rev": "518b9c2159e7d4b7696ee18b8828f9086012923b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "master",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1636282776,
+        "narHash": "sha256-JNqtq8AedpPFKVW44gRMCzy0PjnAp0OcQ8zihD3PQEQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "d1a8806e3910ed32d1d702c21b9375297292305e",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1636283243,
+        "narHash": "sha256-91PYhxaYI87NgmYN/Ict+pef7IfccvGFw9B4eRzrjIY=",
+        "owner": "mkg20001",
+        "repo": "nixpkgs",
+        "rev": "1111f440b560177bb87906ae0444998f2a120c94",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mkg20001",
+        "ref": "mkg-patch",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "solar": "solar"
+      }
+    },
+    "solar": {
+      "inputs": {
+        "nix-node-package": "nix-node-package",
+        "nixos-hardware": "nixos-hardware",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1636283659,
+        "narHash": "sha256-OOmfhIoRbbWIgPt4NJhi0I6DrkTnuaCViN5dOLCY2nA=",
+        "owner": "ssd-solar",
+        "repo": "solaros-nix",
+        "rev": "1c4a6af2ec6b66b8e14d0d4c3746a40c0fda1b57",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ssd-solar",
+        "ref": "master",
+        "repo": "solaros-nix",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
